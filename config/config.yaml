@@ -1,0 +1,53 @@
+# ═══════════════════════════════════════════════════════════════
+# Enterprise LLM — Master Configuration
+# ═══════════════════════════════════════════════════════════════
+
+# Model Configuration
+model:
+  base_model: "enterprise-llm"         # This triggers MLX backend
+  embedding_model: "all-MiniLM-L6-v2"  # Sentence-transformers model
+  max_tokens: 1024                     # Max output tokens
+  temperature: 0.7                     # Default generation temperature
+
+# Training Configuration (for fine-tuning on Colab/cloud)
+training:
+  lora_rank: 32
+  lora_alpha: 32
+  learning_rate: 0.0002
+  num_epochs: 3
+  batch_size: 2
+  gradient_accumulation: 4
+  max_seq_length: 2048
+
+# RAG Configuration
+rag:
+  chunk_size: 500                      # Characters per chunk
+  chunk_overlap: 50                    # Overlap between chunks
+  top_k: 5                            # Chunks to retrieve per query
+  db_path: "./data/chromadb"
+  collection_name: "knowledge_base"
+  similarity_threshold: 0.3            # Minimum relevance score
+
+# Security Configuration
+security:
+  pii_score_threshold: 0.5            # PII detection confidence threshold
+  block_on_pii: false                 # false = redact, true = block entirely
+  rate_limit_requests: 10             # Max requests per window
+  rate_limit_window: 60               # Window in seconds
+  injection_threshold: 0.7            # Confidence to block injection
+
+# Paths
+paths:
+  data_dir: "./data"
+  traces_dir: "./data/traces"
+  training_data_dir: "./data/training_data"
+  documents_dir: "./data/documents"
+  models_dir: "./models"
+  logs_dir: "./logs"
+  audit_log: "./logs/audit_log.jsonl"
+
+# Server Configuration (for API deployment)
+server:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 1

@@ -1,0 +1,39 @@
+# Enterprise LLM — Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core ML
+torch
+torchvision
+torchaudio
+
+# Training (for Colab/cloud fine-tuning)
+transformers
+datasets
+peft
+trl
+accelerate
+
+# RAG
+chromadb
+sentence-transformers
+
+# Security
+presidio-analyzer
+presidio-anonymizer
+spacy
+
+# API & Utilities
+anthropic
+requests
+rich
+click
+python-dotenv
+pyyaml
+
+# Server (for production deployment)
+fastapi
+uvicorn
+
+# Apple Silicon ML (Mac M4 Pro)
+mlx
+mlx-lm
